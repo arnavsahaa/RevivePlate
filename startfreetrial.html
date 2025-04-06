@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Same head as index.html -->
+    <meta charset="utf-8">
+    <title>RevivePlate - Start Free Trial</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/3b42635887.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navbar (Copy from index.html) -->
+    <div class="container-xxl position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <h1 class="m-0" style="color: #12570b; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+                    RevivePlate
+                </h1>
+            </a>>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto py-0">
+                    <a href="index.html" class="nav-item nav-link" style="color: #12570b; font-weight: 500;">Home</a>
+                    <a href="donation-form.html" class="nav-item nav-link" style="color: #12570b; font-weight: 500;">DonationDrive</a>
+                    <a href="cart.html" class="nav-item nav-link" style="color: #12570b; font-weight: 500;">Cart</a>
+                </div>
+                <a href="index.html" class="btn btn-primary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Back to Home</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Free Trial Form Section -->
+    <div class="container-xxl py-5">
+        <div class="container px-lg-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="text-primary-gradient fw-medium">................................</h5>
+                <h1 class="mb-4">Start Your 3-Day Free Trial</h1>
+                <p class="mb-5">Experience food rescue with zero commitment. No credit card required.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4 p-md-5">
+                            <form id="trialForm">
+                                <div class="mb-4">
+                                    <h5 class="text-primary-gradient mb-3">
+                                        <i class="fas fa-user-circle me-2"></i>Personal Information
+                                    </h5>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="trialName" placeholder="Full Name" required>
+                                                <label for="trialName">Full Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="email" class="form-control" id="trialEmail" placeholder="Email Address" required>
+                                                <label for="trialEmail">Email Address</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="tel" class="form-control" id="trialPhone" placeholder="Phone Number" required>
+                                                <label for="trialPhone">Phone Number</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="trialLocation" placeholder="Your City" required>
+                                                <label for="trialLocation">Your City</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h5 class="text-primary-gradient mb-3">
+                                        <i class="fas fa-utensils me-2"></i>Trial Preferences
+                                    </h5>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="trialPlan" required>
+                                                    <option value="">Select a plan</option>
+                                                    <option value="basic">Basic Platter (1 meal/day)</option>
+                                                    <option value="family">Family Pack (2-3 meals/day)</option>
+                                                    <option value="feast">Feast Box (4+ meals/day)</option>
+                                                </select>
+                                                <label for="trialPlan">Trial Plan</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="deliveryPref" required>
+                                                    <option value="">Select delivery</option>
+                                                    <option value="delivery">Home Delivery</option>
+                                                    <option value="pickup">Nearest Pickup Point</option>
+                                                </select>
+                                                <label for="deliveryPref">Delivery Preference</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="trialTerms" required>
+                                        <label class="form-check-label" for="trialTerms">
+                                            I agree to RevivePlate's <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="trialUpdates">
+                                        <label class="form-check-label" for="trialUpdates">
+                                            Send me updates about food rescue initiatives
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button class="btn btn-primary-gradient rounded-pill py-3 px-5" type="submit">
+                                        <i class="fas fa-rocket me-2"></i>Start Free Trial
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Success Message (hidden by default) -->
+                    <div class="card border-0 shadow-sm mt-4 d-none" id="trialSuccess">
+                        <div class="card-body p-4 p-md-5 text-center">
+                            <i class="fas fa-check-circle text-success fa-4x mb-4"></i>
+                            <h3 class="mb-3">Trial Activated!</h3>
+                            <p class="mb-4">Your 3-day free trial starts now. Check your email for confirmation.</p>
+                            <a href="index.html" class="btn btn-primary-gradient rounded-pill px-4">
+                                <i class="fas fa-home me-2"></i>Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal (Copy to your main.js if needed) -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terms of Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>1. Free trial lasts for 3 days with limited meals per day.</p>
+                    <p>2. No payment required during trial period.</p>
+                    <p>3. Trial automatically ends after 3 days unless canceled.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary-gradient rounded-pill" data-bs-dismiss="modal">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Copy from index.html) -->
+    <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+        <!-- Your existing footer code -->
+    </div>
+
+    <!-- JavaScript Libraries (Same as index.html) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Add this to your existing main.js -->
+    <script>
+        // Trial Form Submission
+        document.getElementById('trialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                document.getElementById('trialForm').classList.add('d-none');
+                document.getElementById('trialSuccess').classList.remove('d-none');
+                
+                // In real implementation, send data to your backend
+                // const formData = {
+                //     name: document.getElementById('trialName').value,
+                //     email: document.getElementById('trialEmail').value,
+                //     // ... other fields
+                // };
+                // fetch('/api/trial', { method: 'POST', body: JSON.stringify(formData) })
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
