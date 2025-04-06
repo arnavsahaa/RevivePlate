@@ -428,3 +428,153 @@ toastStyles.textContent = `
     .bg-danger { background-color: #dc3545 !important; }
 `;
 document.head.appendChild(toastStyles);
+
+// Cart functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize cart from localStorage or create empty array
+    let cart = JSON.parse(localStorage.getItem('reviveplateCart')) || [];
+
+    // Add to cart buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const item = {
+                id: this.dataset.id || Date.now(),
+                name: this.dataset.name,
+                price: parseFloat(this.dataset.price),
+                quantity: 1,
+                image: this.dataset.image || 'img/default-food.jpg'
+            };
+
+            // Check if item already in cart
+            const existingItem = cart.find(i => i.id === item.id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push(item);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('reviveplateCart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Optional: Show confirmation
+            alert(`${item.name} added to cart!`);
+        });
+    });
+
+    // Update cart count in navbar
+    function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelectorAll('.cart-count').forEach(el => {
+            el.textContent = totalItems;
+        });
+    }
+
+    // Initialize cart count on page load
+    updateCartCount();
+});
+
+// Add this to main.js (or create cart.js)
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.cart-items')) {
+        const cart = JSON.parse(localStorage.getItem('reviveplateCart')) || [];
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const emptyCartMsg = document.querySelector('.empty-cart-message');
+
+        if (cart.length === 0) {
+            emptyCartMsg.style.display = 'block';
+            cartItemsContainer.innerHTML = '';
+        } else {
+            emptyCartMsg.style.display = 'none';
+            
+            // Generate cart items HTML
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded">
+                    <div class="d-flex align-items-center">
+                        <img src="${item.image}" alt="${item.name}" class="me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                        <div>
+                            <h6 class="mb-0">${item.name}</h6>
+                            <small class="text-muted">$${item.price.toFixed(2)} each</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-sm btn-outline-secondary decrease" data-id="${item.id}">-</button>
+                        <span class="mx-2">${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary increase" data-id="${item.id}">+</button>
+                        <span class="ms-3 fw-bold">$${(item.price * item.quantity).toFixed(2)}</span>
+                        <button class="btn btn-sm btn-link text-danger remove ms-2" data-id="${item.id}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update totals
+            updateCartTotals();
+
+            // Add event listeners
+            addCartEventListeners();
+        }
+    }
+
+    function updateCartTotals() {
+        const cart = JSON.parse(localStorage.getItem('reviveplateCart')) || [];
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = Math.max(0, subtotal - 2); // $2 discount
+        
+        document.querySelector('.cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.querySelector('.cart-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function addCartEventListeners() {
+        // Quantity decrease
+        document.querySelectorAll('.decrease').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cart = JSON.parse(localStorage.getItem('reviveplateCart')) || [];
+                const itemId = this.dataset.id;
+                const itemIndex = cart.findIndex(item => item.id == itemId);
+                
+                if (itemIndex !== -1) {
+                    if (cart[itemIndex].quantity > 1) {
+                        cart[itemIndex].quantity--;
+                    } else {
+                        cart.splice(itemIndex, 1);
+                    }
+                    localStorage.setItem('reviveplateCart', JSON.stringify(cart));
+                    location.reload(); // Refresh to update display
+                }
+            });
+        });
+        
+        // Quantity increase
+        document.querySelectorAll('.increase').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cart = JSON.parse(localStorage.getItem('reviveplateCart')) || [];
+                const itemId = this.dataset.id;
+                const itemIndex = cart.findIndex(item => item.id == itemId);
+                
+                if (itemIndex !== -1) {
+                    cart[itemIndex].quantity++;
+                    localStorage.setItem('reviveplateCart', JSON.stringify(cart));
+                    location.reload();
+                }
+            });
+        });
+        
+        // Remove item
+        document.querySelectorAll('.remove').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cart = JSON.parse(localStorage.getItem('reviveplateCart')) || [];
+                const itemId = this.dataset.id;
+                const newCart = cart.filter(item => item.id != itemId);
+                
+                localStorage.setItem('reviveplateCart', JSON.stringify(newCart));
+                location.reload();
+            });
+        });
+    }
+});
